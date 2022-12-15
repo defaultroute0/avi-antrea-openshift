@@ -1,0 +1,14 @@
+apiVersion: ako.vmware.com/v1alpha1
+kind: HostRule
+metadata:
+  name: shopping-waf-nonsiglogs
+spec:
+  virtualhost:
+    fqdn: myapp-ingress.avilb.ocp01.vcnlab01.eng.vmware.com
+    enableVirtualHost: true
+    wafPolicy: System-WAF-Policy
+    analyticsPolicy:
+      fullClientLogs:
+        enabled: true
+        throttle: LOW
+      logAllHeaders: true
