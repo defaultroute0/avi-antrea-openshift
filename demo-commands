@@ -1,0 +1,110 @@
+
+
+##################
+##################
+##################
+
+deploying a microservioces app into openshift
+then we will expose and ptotect the app with L4 LB and secondly secure Routes / TLS based ingess
+showing the antrea policy, on how we are protecting the app inside the cluster
+and how we can drive the policy from NSX-T
+
+##################
+##  OC SHOPPING DEMO   
+##################
+
+oc config get-contexts
+oc get nodes
+
+oc get pods -A   
+oc get pods -A | grep -e antrea
+oc get pods -A | grep -e ako
+oc apply -f shopping.yaml -n shopping
+oc get all -n shopping 
+oc describe svc frontend-external  -n shopping
+oc get pods -n shopping -o wide
+http://myapp.avilb.ocp01.vcnlab01.eng.vmware.com 
+oc describe pod frontend -n shopping | grep -e nodeportlocal
+oc scale --replicas=3 deploy/frontend -n shopping  # show nodes in AVI UI
+oc describe pod frontend -n shopping | grep -e nodeportlocal
+k get ep -n shopping
+k edit cm avi-k8s-config -n avi-system ##show nodeportlocal in use as we using antrea
+oc scale --replicas=1 deploy/frontend -n shopping
+oc apply -f shoppingroute.yaml -n shopping
+oc describe routes -n shopping
+https://myapp-ingress.avilb.ocp01.vcnlab01.eng.vmware.com/ 
+cat shoppingwafandlogs.yaml
+oc apply -f shoppingwafandlogs.yaml -n shopping
+oc get pods -A | grep -e antrea
+oc get pods -n shopping --show-labels
+Inside NSX-T.... Inventory >> containers >> clusters, ns, groups, policies
+oc get acnp
+oc describe acnp da803eb7-f151-4e59-9663-229f6eb068ce
+oc describe acnp da803eb7-f151-4e59-9663-229f6eb068ce | grep -e Action -e From: -e To: -e Protocol -e Block -e Port -e Cidr -e Ingress: -e Egress:
+Inside NSX-T - TRAFFIC ANALYSIS >> traceflow  
+
+
+###################################
+##  Hello Kubernetes Demo   #######
+###################################
+oc config get-contexts
+k1
+oc get pods -A | grep -e ako -e amko
+k2
+oc get pods -A | grep -e ako -e amko
+kubectl get gslbconfig -n avi-system
+kubectl describe gslbconfig -n avi-system
+kubectl get gdp -n avi-system
+kubectl describe gdp -n avi-system
+cat hello1.yaml | grep -e kind -e app:   #show the matching of clusters and app selector "app: gslb"
+cat hello1.yaml | grep -e fqdn -e gslb -e MESSAGE -e kind 
+cat hello2.yaml | grep -e fqdn -e gslb -e MESSAGE -e kind
+dig hello.gslb.ocp.vcnlab01.eng.vmware.com @10.174.135.1
+ while true; do dig +short hello.gslb.ocp.vcnlab01.eng.vmware.com @10.174.135.1; sleep 1; done
+k1
+kaf hello1.yaml -n hello
+oc get all -n hello
+https://hello.avilb.ocp01.vcnlab01.eng.vmware.com/
+https://hello.gslb.ocp.vcnlab01.eng.vmware.com/
+k2
+kaf hello2.yaml -n hello
+oc get all -n hello
+https://hello.avilb.ocp02.vcnlab01.eng.vmware.com/
+https://hello.gslb.ocp.vcnlab01.eng.vmware.com/
+k2
+oc get nodes
+oc scale --replicas=10 machineset ocp02-lvv48-worker -n openshift-machine-api
+oc get nodes | grep -e worker | wc -l
+# GSLB Weightage to 50/50
+k1
+cat gslb-50-50.yaml
+kaf gslb-50-50.yaml -n hello
+ while true; do dig +short hello.gslb.ocp.vcnlab01.eng.vmware.com @10.174.135.1; sleep 1; done
+# GSLB Weightage to 80/20, so we make OCP02 take 4 times as much load
+k1
+cat gslb-80-20.yaml
+kaf gslb-80-20.yaml -n hello
+ while true; do dig +short hello.gslb.ocp.vcnlab01.eng.vmware.com @10.174.135.1; sleep 1; done
+broswer: https://hello.gslb.ocp.vcnlab01.eng.vmware.com/
+# Lets Delete hello in OCP01 simulating a site / cluster failure..
+k1 
+oc delete -f hello1.yaml
+ while true; do dig +short hello.gslb.ocp.vcnlab01.eng.vmware.com @10.174.135.1; sleep 1; done
+broswer: https://hello.gslb.ocp.vcnlab01.eng.vmware.com/
+look into the gslb record and show the pool
+#put it back
+oc apply -f hello1.yaml -n hello
+k2
+oc get nodes
+BROWSER:  https://console-openshift-console.apps.ocp02.vcnlab01.eng.vmware.com/k8s/cluster/nodes
+BROWSER:  "kubeadmin", and password: "XXXX"
+k2
+oc get pods -n hello -o wide
+oc scale deployment hello-kubernetes --replicas=30 -n hello
+oc get pods -n hello -o wide
+k2
+kaf gslb-50-50.yaml -n hello
+oc scale deployment hello-kubernetes --replicas=3 -n hello
+oc get pods -n hello -o wide
+oc scale --replicas=3 machineset ocp02-lvv48-worker -n openshift-machine-api
+oc get nodes
