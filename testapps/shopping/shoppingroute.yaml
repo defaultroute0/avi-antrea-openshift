@@ -1,0 +1,23 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+    name: frontend
+    namespace: shopping
+spec:
+  host: myapp-ingress.avilb.ocp01.vcnlab01.eng.vmware.com
+#  path: /
+  to:
+    kind: Service
+    name: frontend
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+    certificate: |
+        -----BEGIN CERTIFICATE-----
+      xx-gen one yourself
+        -----END CERTIFICATE-----
+    key: |
+        -----BEGIN PRIVATE KEY-----
+      xxxx-gen one yourself
+        -----END PRIVATE KEY-----
