@@ -1,0 +1,124 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-kubernetes
+  namespace: hello
+  labels:
+    appuse: hello-kubernetes
+    app: gslb
+  annotations:
+    nodeportlocal.antrea.io/enabled: "true"
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    appuse: hello-kubernetes
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-kubernetes
+  namespace: hello
+  labels:
+    appuse: hello-kubernetes
+    app: gslb
+  annotations:
+    nodeportlocal.antrea.io/enabled: "true"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      appuse: hello-kubernetes
+  template:
+    metadata:
+      labels:
+        appuse: hello-kubernetes
+    spec:
+      containers:
+      - name: hello-kubernetes
+        image: paulbouwer/hello-kubernetes:1.10
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: MESSAGE
+          value: "MESSAGE: this service resides in ocp02"
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: regcred
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: hello-kubernetes-route
+  namespace: hello
+  labels:
+    appuse: hello-kubernetes
+    app: gslb
+  annotations:
+    nodeportlocal.antrea.io/enabled: "true"
+spec:
+  host: hello.avilb.ocp02.vcnlab01.eng.vmware.com
+  to:
+    kind: Service
+    name: hello-kubernetes
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+    certificate: |
+      -----BEGIN CERTIFICATE-----
+xxx
+      -----END CERTIFICATE-----
+    key: |
+      -----BEGIN PRIVATE KEY-----
+xx
+      -----END PRIVATE KEY-----
+---
+apiVersion: ako.vmware.com/v1alpha1
+kind: HostRule
+metadata:
+  name: hello-kubernetes-hostrule
+  namespace: hello
+spec:
+  virtualhost:
+    fqdn: hello.avilb.ocp02.vcnlab01.eng.vmware.com # mandatory
+#    fqdnType: Exact
+#    enableVirtualHost: true
+#    tls: # optional
+#      sslKeyCertificate:
+#        name: avi-ssl-key-cert
+#        type: ref
+#        alternateCertificate:
+#          name: avi-ssl-key-cert2
+#          type: ref
+#      sslProfile: avi-ssl-profile
+#      termination: edge
+    gslb:
+      fqdn: hello.gslb.ocp.vcnlab01.eng.vmware.com
+#    httpPolicy:
+#      policySets:
+#      - avi-secure-policy-ref
+#      overwrite: false
+#    datascripts:
+#    - avi-datascript-redirect-app1
+#    wafPolicy: avi-waf-policy
+#    applicationProfile: avi-app-ref
+#    analyticsProfile: avi-analytics-ref
+#    errorPageProfile: avi-errorpage-ref
+    analyticsPolicy: # optional
+      fullClientLogs:
+        enabled: true
+        throttle: LOW
+      logAllHeaders: true
+#    tcpSettings:
+#      listeners:
+#      - port: 8081
+#      - port: 6443
+#        enableSSL: true
+#      loadBalancerIP: 10.10.10.1
+#    aliases: # optional
+#    -  bar.com
+#    -  baz.com
