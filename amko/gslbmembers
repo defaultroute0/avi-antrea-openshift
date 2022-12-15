@@ -1,0 +1,1 @@
+# just copy over your ~/.kube/config file, tidy up for only gslb cluster of interest and rename it as this
