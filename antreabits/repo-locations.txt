@@ -1,0 +1,2 @@
+  antreaImage: projects.registry.vmware.com/antreainterworking/antrea-ubi:v1.7.1_vmware.1
+  interworkingImage: projects.registry.vmware.com/antreainterworking/interworking-ubi:0.7.0
