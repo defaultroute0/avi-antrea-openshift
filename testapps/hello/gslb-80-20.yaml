@@ -1,0 +1,14 @@
+#run this on leader
+apiVersion: amko.vmware.com/v1alpha1
+kind: GSLBHostRule
+metadata:
+  name: gslbhostrule
+  namespace: hello
+spec:
+  fqdn: hello.gslb.ocp.vcnlab01.eng.vmware.com
+  trafficSplit:
+  - cluster: k1
+    weight: 1
+  - cluster: k2
+    weight: 4
+  ttl: 1
