@@ -47,5 +47,5 @@ platform:
     username: administrator
     vCenter: my-vca-fqdn.com
 publish: External
-pullSecret: '{"auths":{"cloud.openshift.com":{"auth":"b3BlbnNsX2RQaEI4RWl4N242dW5FVDNUbw==","email":"thing@thing.com"}}}'
-sshKey: 'ssh-rsa AAAABXc0Ln user@machine'
+pullSecret: |
+sshKey: |
