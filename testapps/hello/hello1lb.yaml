@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: hellolb.avilb.ocp01.vcnlab01.eng.vmware.com
+  labels:
+    appuse: hello-kubernetes
+  name: hellolb
+  namespace: hello
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    appuse: hello-kubernetes
+  type: LoadBalancer
