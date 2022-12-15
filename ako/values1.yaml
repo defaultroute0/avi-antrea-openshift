@@ -102,7 +102,7 @@ rbac:
 
 avicredentials:
   username: 'admin'
-  password: xxxxxxxxxxx
+  password: 'XXXXX'
   authtoken:
   certificateAuthorityData:
 
