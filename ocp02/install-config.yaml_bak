@@ -1,0 +1,51 @@
+apiVersion: v1
+baseDomain: vcnlab01.eng.vmware.com
+compute:
+- architecture: amd64
+  hyperthreading: Enabled
+  name: worker
+  platform:
+    vsphere:
+      cpus: 4
+      coresPerSocket: 2
+      memoryMB: 16384
+      osDisk:
+        diskSizeGB: 120
+  replicas: 3
+controlPlane:
+  architecture: amd64
+  hyperthreading: Enabled
+  name: master
+  platform:
+    vsphere:
+      cpus: 4
+      coresPerSocket: 2
+      memoryMB: 16384
+      osDisk:
+        diskSizeGB: 120
+  replicas: 3
+metadata:
+  name: ocp02
+networking:
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  machineNetwork:
+  - cidr: 10.174.135.0/24
+  networkType: antrea
+  serviceNetwork:
+  - 172.30.0.0/16
+platform:
+  vsphere:
+    cluster: cmp
+    defaultDatastore: vsanDatastore
+    datacenter: DC1
+    ingressVIP: 10.174.135.36
+    apiVIP: 10.174.135.35
+    network: mgmt-vl1389
+    password: XXXXXX
+    username: administrator
+    vCenter: myvcafqdn.com
+publish: External
+pullSecret: |
+sshKey: |
