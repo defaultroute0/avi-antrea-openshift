@@ -18,32 +18,32 @@ And two test apps to showcase some basic functions, all driven via kubectl/yaml
 References:
 
  
-Antrea:  Base Doc (shows encaps / encryptions / network policy chapters / logs etc)
+- Antrea:  Base Doc (shows encaps / encryptions / network policy chapters / logs etc)
 https://antrea.io/docs/v1.9.0
  
-Antrea: Controlling the egress identity of PODs so they can be consistent into surrounding firewalls:
+- Antrea: Controlling the egress identity of PODs so they can be consistent into surrounding firewalls:
 https://antrea.io/docs/v1.6.1/docs/egress/
  
-Antrea: Certified With RedHat
+- Antrea: Certified With RedHat
 https://catalog.redhat.com/software/operators/detail/5fb647d793431a8f675c4e15
  
-Antrea:  Practical Example of using Cluster-Wide and NS-Wide Policies for diff personas operating the platform 
+- Antrea:  Practical Example of using Cluster-Wide and NS-Wide Policies for diff personas operating the platform 
 https://yikes.guzware.net/2021/07/10/antrea-network-policies/
  
-Antrea:  Easy Example for Sec Ops (or any other stakeholder group)  to apply governance around strict NS / tenant isolation
+- Antrea:  Easy Example for Sec Ops (or any other stakeholder group)  to apply governance around strict NS / tenant isolation
 https://github.com/antrea-io/antrea/blob/main/docs/antrea-network-policy.md#acnp-for-strict-namespace-isolation
  
-Antrea:  Cluster/NS Wide isolation for default zero-trust cluster security posture
+- Antrea:  Cluster/NS Wide isolation for default zero-trust cluster security posture
 https://github.com/antrea-io/antrea/blob/main/docs/antrea-network-policy.md#acnp-for-default-zero-trust-cluster-security-posture
  
-Antrea/NSX-T:  NSX-T mgmt. plane integration into Antrea Clusters for simplified ops/visibility etc
+- Antrea/NSX-T:  NSX-T mgmt. plane integration into Antrea Clusters for simplified ops/visibility etc
 https://blogs.vmware.com/networkvirtualization/2022/02/connect-and-secure-your-apps-with-antrea-and-vmware-nsx-t-3-2.html/
   
-NSX Adv Load Balancer (Avi Networks) - solution
+- NSX Adv Load Balancer (Avi Networks) - solution
 https://avinetworks.com/kubernetes-ingress-controller/
  
-Aria for Network Operations (vRNI): Solution to visualising ‘inception’… physical fabric + vsphere + vds + nsx-t + antrea flows etc
+- Aria for Network Operations (vRNI): Solution to visualising ‘inception’… physical fabric + vsphere + vds + nsx-t + antrea flows etc
 https://blogs.vmware.com/management/2022/04/container-network-insights-with-antrea.html
  
-AVI: Video K8S + GSLB Demo on OpenShift:
+- AVI: Video K8S + GSLB Demo on OpenShift:
 https://www.brighttalk.com/webcast/19140/539875
