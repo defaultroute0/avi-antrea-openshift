@@ -1,13 +1,11 @@
 # avi-antrea-openshift
 ako and amko examples for RedHat Openshift
 
-This is a repo for my build of two Openshift 4.10 (IPI) clusters
-
-Using Antrea Ent at time of cluster creation
-
-OCP Cluster Operators - Integration / Interworking with NSX-T 3.2.1.1
-
-AVI 22.1.1 - vCenter Cloud with IPAM, DNS-VS etc, ako 1.8.1, amko 1.8.1
+This is a repo for 
+- my build of two Openshift 4.10 (IPI) clusters
+- using Antrea Ent at time of cluster creation
+- OCP Cluster Operators - Integration / Interworking with NSX-T 3.2.1.1
+- AVI 22.1.1 - vCenter Cloud with IPAM, DNS-VS etc, ako 1.8.1, amko 1.8.1
 
 This is all inside one DC and one AVI Controller for resource savings, however the GSLB topology could just as easily been between two DC's, Two vCenters with the clusters in each accordingly. The cluster endpoints are unique in either case
 
