@@ -1,14 +1,9 @@
-
-
-##################
-##################
-##################
-
-deploying a microservioces app into openshift
-then we will expose and ptotect the app with L4 LB and secondly secure Routes / TLS based ingess
-showing the antrea policy, on how we are protecting the app inside the cluster
-and how we can drive the policy from NSX-T
-then we will deploy multi AZ, and GSLB across the top. All from yaml / kubectl, simulating devops / pipelining ties
+# Whats going on here?
+# deploying a microservioces app into openshift
+# then we will expose and ptotect the app with L4 LB and secondly secure Routes / TLS based ingess
+# showing the antrea policy, on how we are protecting the app inside the cluster
+# and how we can drive the policy from NSX-T
+# then we will deploy multi AZ, and GSLB across the top. All from yaml / kubectl, simulating devops / pipelining ties
 
 ##################
 ##  OC SHOPPING DEMO   
