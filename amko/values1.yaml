@@ -19,7 +19,7 @@ federation:
   # Set to true if AMKO on this cluster is the leader
   currentClusterIsLeader: true
   # member clusters to federate the GSLBConfig and GDP objects on, if the
-  # current cluster context is part of this list, the federator will ignore it
+  # current cluster context is part of this list, the federator will ignore it, these are alias's btw
   memberClusters:
   - k1
   - k2
