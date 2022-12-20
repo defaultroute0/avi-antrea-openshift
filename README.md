@@ -5,7 +5,7 @@ This is a repo for
 - my build of two Openshift 4.10 (IPI) clusters
 - using Antrea Ent at time of cluster creation
 - OCP Cluster Operators - Integration / Interworking with NSX-T 3.2.1.1 / AKO 1.8.1 / AMKO 1.8.1
-- AVI 22.1.1 - vCenter Cloud with IPAM, DNS-VS etc
+- NSX Advanced Load Balancer - AVI 22.1.1 - vCenter Cloud with IPAM, DNS-VS etc
 
 This is all inside one DC and one AVI Controller for resource savings, however the GSLB topology could just as easily been between two DC's, two vCenters and two AVI controller clusters with the OCP K8S clusters in each accordingly. The OCP cluster virtual services / endpoints and routes are unique in either case
 
