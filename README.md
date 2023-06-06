@@ -4,7 +4,7 @@ ako and amko examples for RedHat Openshift
 This is a repo for 
 - my build of two Openshift 4.10 (IPI) clusters
 - using Antrea Ent at time of cluster creation
-  N.B Antrea is optional, Openshift-SDN also supported, Kubernetes-OVN support imminent, coming June 23
+  N.B Antrea is optional, Openshift-SDN also supported, Kubernetes-OVN support imminent, coming AKO 1.10.1 June 23
 - OCP Cluster Operators - Integration / Interworking with NSX-T 3.2.1.1 / AKO 1.8.1 / AMKO 1.8.1
 - NSX Advanced Load Balancer - AVI 22.1.1 - vCenter Cloud with IPAM, DNS-VS etc
 
