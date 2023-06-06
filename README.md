@@ -42,6 +42,9 @@ https://blogs.vmware.com/networkvirtualization/2022/02/connect-and-secure-your-a
   
 - NSX Adv Load Balancer (Avi Networks) - solution
 https://avinetworks.com/kubernetes-ingress-controller/
+
+- NSX Adv Load Balancer (Avi Networks) - CRD's
+https://avinetworks.com/docs/ako/1.9/custom-resource-definitions/
  
 - Aria for Network Operations (vRNI): Solution to visualising ‘inception’… physical fabric + vsphere + vds + nsx-t + antrea flows etc
 https://blogs.vmware.com/management/2022/04/container-network-insights-with-antrea.html
