@@ -15,10 +15,11 @@ And two test apps to showcase some basic functions, all driven via kubectl/yaml
 
 <img width="852" alt="Screenshot 2022-12-16 at 11 16 42 am" src="https://user-images.githubusercontent.com/67136481/207993547-fb147d51-618f-42f7-9bdb-40578ef8a6fa.png">
 
+VIDEO HERE: https://www.youtube.com/watch?v=UzfpmIKJB0o
+
 
 References:
 
- 
 - Antrea:  Base Doc (shows encaps / encryptions / network policy chapters / logs etc)
 https://antrea.io/docs/v1.9.0
  
