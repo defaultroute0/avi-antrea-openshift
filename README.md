@@ -11,6 +11,7 @@ This is a repo for
 This is all inside one DC and one AVI Controller for resource savings, however the GSLB topology could just as easily been between two DC's, two vCenters and two AVI controller clusters with the OCP K8S clusters in each accordingly. The OCP cluster virtual services / endpoints and routes are unique in either case
 
 And two test apps to showcase some basic functions, all driven via kubectl/yaml
+
 DEMO VIDEO HERE: https://www.youtube.com/watch?v=UzfpmIKJB0o
 
 <img width="852" alt="Screenshot 2022-12-16 at 11 16 42 am" src="https://user-images.githubusercontent.com/67136481/207993547-fb147d51-618f-42f7-9bdb-40578ef8a6fa.png">
